@@ -1,0 +1,75 @@
+    .ios, .md {
+        page-home {
+            .scroll-content {
+                    background-color: map-get($colors, light);
+                }
+        
+                ion-card-header {
+                    font-weight: bold;
+                }
+        
+            }
+        
+
+    }
+        ion-icon {
+        //   font-size: 50px;
+            //   padding: 20px;
+        // //   color: #000000;
+        }
+    h5 {
+        color: #e75116;
+        font-size: 7;
+    }
+    // ion-item {
+    //     padding: 20px;
+    //     box-shadow: 3px 5px 5px #e9b44c;
+    //     // outline-style: solid;
+    //     // outline-offset: 2px;
+    //     // outline-color: #209deb;
+    // }
+      
+        // ion-row {
+        //   height: 100%;
+        //   flex-wrap: wrap;
+        // }
+      
+        // ion-col {
+        //   flex: 0 0 25%;
+        //   max-width: 25%;
+        //   text-align: center;
+        //   padding: 10px 5px;
+        // }
+
+        img {
+            ruby-align: right;
+            height: 200;
+            width: 200;
+        }
+        
+        .md-stats{
+            color: red !important;
+        }
+.ion-content {
+    background-color: #df9b1c;
+  }
+.masters {
+    background-color: #33454e;
+  }
+
+.secondary {
+    background-color: #ffff;
+  }
+          
+  .bg {
+    background: -webkit-linear-gradient(-55deg, #50a2a7 35%, #e9b44c 100%) !important;      
+  }
+
+//   .border-shade {
+//     // padding: 20px;
+//     box-shadow: 3px 7px 7px #26dd26;
+//   }
+.icon-dashboard{
+    font-size: 50px; 
+    padding: 10px;
+}

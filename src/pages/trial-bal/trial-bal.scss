@@ -1,0 +1,31 @@
+page-trial-bal {
+    
+    }
+    
+    h2 {
+        color: #f05f0b;
+        font-size: 18;
+    }
+    
+    p {
+        color: blue;
+        font-size: 14;
+    }
+    
+    .masters {
+        background-color: #7bcfff;
+      }
+    
+    .secondary {
+        background-color: #ffff;
+        // background-color: #9ed5ff;
+      }
+    
+      .bg {
+        background: -webkit-linear-gradient(-55deg, #209deb 35%, #e9b44c 100%) !important;      
+        // background: -webkit-linear-gradient(-55deg, #50a2a7 35%, #e9b44c 100%) !important;      
+      }
+      ion-row {
+        // padding: 20px;
+        box-shadow: 1px 2px 2px #f9a825;
+      }

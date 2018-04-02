@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar [color]="'head'">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Day Book</ion-title>
+    <ion-buttons right>
+      <img alt="logo" height="40" src="https://s3.ap-south-1.amazonaws.com/bizdaz-images/mobile/{{companyId}}.png">
+      <!-- <img alt="logo" height="40" src="./assets/icon/icon.png"> -->
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<!-- <ion-content class="bg"> -->
+  <ion-list padding>
+    <button ion-item *ngFor="let item of dayBookList; let i = index" class="border-shade">
+      <h2>{{ item.voucherType}}</h2>
+      <h3>{{ item.partyLedgerName}}</h3>
+      <p>{{ item.voucherNumber}}</p>
+      <p>{{ item.voucherDate }}</p>
+      <button ion-button clear item-end [navPush]="dayBookDetailsPage" [navParams]="item">View</button>
+      <button ion-button clear item-end color="danger" *ngIf="role == '1'" (click)="onRemoveFromList(item.voucherKey)">Hide</button>
+    </button>
+  </ion-list>
+</ion-content>

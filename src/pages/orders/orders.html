@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-navbar [color]="'head'">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title center>Orders</ion-title>
+    <ion-buttons right>
+      <img alt="logo" height="40" src="assets/imgs/{{companyId}}.png">
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top [color]="isAndroid ? 'royal' : 'masters'">
+    <ion-segment [(ngModel)]="category" [color]="'head'">
+      <ion-segment-button value="order">
+        Order
+      </ion-segment-button>
+      <ion-segment-button value="status">
+        Status
+      </ion-segment-button>
+      <!-- <ion-segment-button value="accounts">
+          Accounts
+        </ion-segment-button> -->
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div [ngSwitch]="category">
+    <ion-list *ngSwitchCase="'order' || showData == true">
+      <!-- <ion-content> -->
+
+      <form (submit)="submitOrder(ordersForm)" #ordersForm="ngForm">
+        <!-- <form (ngSubmit)="submitOrder(ordersForm)" #ordersForm="ngForm"> -->
+        <ion-item>
+          <ion-label stacked>Item Name</ion-label>
+          <!-- <ion-input [(ngModel)]="orderData.item" name="item" type="text" placeholder="Itemname" required></ion-input> -->
+          <ion-select [(ngModel)]="orderData.item" name="item" [compareWith]="">
+            <ion-option *ngFor="let item of items" [value]="item" (change)="onChange(item)" required>{{item}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-row>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked>Size</ion-label>
+              <ion-select [(ngModel)]="orderData.size" name="size" [compareWith]="">
+                <ion-option *ngFor="let size of sizes" [value]="size" (change)="onChange(size)" required>{{size}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked *ngIf="isToggledSize">Cms</ion-label>
+              <ion-label stacked *ngIf="!isToggledSize">Inches</ion-label>
+              <ion-toggle (ionChange)="notifySize(orderData.size)" [checked]="isToggledSize"></ion-toggle>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked>Weight</ion-label>
+              <ion-input [(ngModel)]="orderData.weight" name="weight" type="text" placeholder="weight" required></ion-input>
+              <!-- <ion-toggle [(ngModel)]="isToggled" (ionChange)="notify($event)"></ion-toggle>   -->
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked *ngIf="isToggledWeight">Kgs</ion-label>
+              <ion-label stacked *ngIf="!isToggledWeight">Tons</ion-label>
+              <ion-toggle (ionChange)="notifyWeight(orderData.weight)" [checked]="isToggledWeight"></ion-toggle>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <!-- <ion-toggle ion-toggle-text="online;offline" ng-model="customText">
+                  Custom text: <b>{{ customText || false }}</b>
+                </ion-toggle> -->
+
+        <ion-item>
+          <ion-label stacked>Notes</ion-label>
+          <ion-input [(ngModel)]="orderData.notes" name="notes" type="text" placeholder="notes"></ion-input>
+        </ion-item>
+        <button ion-button block type="submit" [color]="'primary'" [disabled]="!ordersForm.valid">
+          Submit
+        </button>
+        <button ion-button block [color]="'one'">
+          Cancel
+        </button>
+      </form>
+      <!-- </ion-content> -->
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'status'">
+      <ion-grid>
+        <ion-row class="app-font-25">
+          <ion-col>Date</ion-col>
+          <ion-col>Item</ion-col>
+          <ion-col>Size</ion-col>
+          <ion-col>Weight</ion-col>
+          <ion-col>Notes</ion-col>
+        </ion-row>
+        <!-- <ion-grid [(ngModel)]="item" name="item"> -->
+        <ion-row *ngFor="let list of orderData">
+          <ion-col>{{list.date}}</ion-col>
+          <ion-col>{{list.item}}</ion-col>
+          <ion-col>{{list.size}}</ion-col>
+          <ion-col>{{list.weight}}</ion-col>
+          <ion-col>{{list.notes}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+
+    <!-- <ion-list *ngSwitchCase="'accounts'">
+        <div *ngFor="let item of messages; let i = index">
+          <ion-item *ngIf="i < 2">
+            <ion-card text-wrap class="border-shade">
+              <ion-card-title>
+              </ion-card-title>
+              <ion-card-content>
+                <p>Message Content
+                </p>
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+        </div>
+      </ion-list> -->
+  </div>
+</ion-content>

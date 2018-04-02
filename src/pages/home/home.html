@@ -1,0 +1,150 @@
+<!-- <ion-item *ngFor="let item of customer_details?.sales; let i = index" class="border-shade">
+        <p>{{ item.partyLedgerName}}</p>
+        <p>{{ item.date}}</p>
+        <p>{{ item.amount}}</p>
+        <p>{{ item.companyId}}</p>
+        <p>{{ item.custId}}</p>
+        <p>{{ item.voucherKey}}</p>
+        <p>{{ item.salesId}}</p>
+      </ion-item> -->
+
+<ion-header>
+  <ion-navbar [color]="'head'">
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title center>Dashboard</ion-title>
+    <ion-buttons right>
+      <img alt="logo" height="40" src="assets/imgs/{{companyId}}.png">
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top [color]="isAndroid ? 'royal' : 'masters'">
+    <ion-segment [(ngModel)]="category" [color]="'head'">
+      <ion-segment-button value="summary">
+        Summary
+      </ion-segment-button>
+      <ion-segment-button value="purchase">
+        Purchase
+      </ion-segment-button>
+      <ion-segment-button value="receipts">
+        Receipts
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="bg">
+  <div [ngSwitch]="category">
+    <ion-list *ngSwitchCase="'summary' || showData == true">
+      <ion-item class="border-shade">
+        <ion-thumbnail item-start [ngStyle]="{'color':'#00BCD4'}">
+          <!-- <ion-icon ios="logo-buffer" md="logo-buffer"></ion-icon> -->
+          <ion-icon name="logo-buffer" class="icon-dashboard"></ion-icon>
+        </ion-thumbnail>
+        <h2>Current Balance</h2>
+        <h1>{{displayINR(customer_details?.currentBalance)}}</h1>
+      </ion-item>
+      <ion-item class="border-shade">
+        <ion-thumbnail item-start [ngStyle]="{'color':'#CDDC39'}">
+          <ion-icon name="cart" class="icon-dashboard"></ion-icon>
+        </ion-thumbnail>
+        <h2>Recent Purchase</h2>
+        <h1>{{displayINR(customer_details.sales[0].amount)}}</h1>
+      </ion-item>
+      <ion-item class="border-shade">
+        <ion-thumbnail item-start [ngStyle]="{'color':'#FF8F00'}">
+          <ion-icon name="mail" class="icon-dashboard"></ion-icon>
+        </ion-thumbnail>
+        <h2>Recent Receipt</h2>
+        <h1>{{displayINR(customer_details.receipts[0].amount)}}</h1>
+      </ion-item>
+      <ion-item class="border-shade">
+        <ion-thumbnail item-start [ngStyle]="{'color':'#4CAF50'}">
+          <ion-icon name="contacts" class="icon-dashboard"></ion-icon>
+        </ion-thumbnail>
+        <h2>Customer ID</h2>
+        <h3>{{customer_details?.customerID}}</h3>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'purchase'">
+      <ion-grid>
+        <ion-row>
+          <ion-col><h5>Date</h5></ion-col>
+          <ion-col><h5>Amount</h5></ion-col>
+          <ion-col><h5>Voucher #</h5></ion-col>
+        </ion-row>
+      </ion-grid>
+      <div *ngFor="let item of customer_details?.sales; let i = index">
+        <ion-grid>
+          <ion-row>
+            <!-- <ion-col col-12>
+              <p>{{ item.partyLedgerName}}</p>
+            </ion-col> -->
+            <ion-col>
+              <!-- <p> -->
+              {{ item.date}}
+              <!-- </p> -->
+            </ion-col>
+            <ion-col>
+              <!-- <p>Amount :  -->
+              {{ displayINR(item.amount)}}
+              <!-- </p> -->
+              <!-- <p>{{ item.companyId}}</p> -->
+              <!-- <p>{{ item.custId}}</p> -->
+            </ion-col>
+            <!-- <ion-col col-12>
+              <p>Voucher Key : {{ item.voucherKey}}</p>
+            </ion-col> -->
+            <ion-col>
+              <!-- <p>Sales ID : -->
+              {{ item.voucherNumber}}
+              <!-- </p> -->
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-list>
+    <ion-list *ngSwitchCase="'receipts'">
+      <ion-grid>
+        <ion-row>
+          <ion-col><h5>Date</h5></ion-col>
+          <ion-col><h5>Amount</h5></ion-col>
+          <ion-col><h5>Voucher #</h5></ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-item *ngFor="let item of customer_details?.receipts; let i = index" class="border-shade">
+        <ion-grid>
+          <ion-row>
+            <!-- <ion-col col-12>
+              <p>{{ item.partyLedgerName}}</p>
+            </ion-col> -->
+            <ion-col>
+              <!-- <p>Date : -->
+              {{ item.date}}
+              <!-- </p> -->
+            </ion-col>
+            <ion-col>
+              <!-- <p>Amount : -->
+              {{ displayINR(item.amount)}}
+              <!-- </p> -->
+            </ion-col>
+            <!-- <p>{{ item.companyId}}</p> -->
+            <!-- <p>{{ item.custId}}</p> -->
+            <!-- <ion-col col-12>
+              <p>Voucher Key : {{ item.voucherKey}}</p>
+            </ion-col> -->
+            <ion-col>
+              <!-- <p>Receipt ID :  -->
+              {{ item.voucherNumber}}
+              <!-- </p> -->
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

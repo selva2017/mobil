@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar [color]="'head'">
+    <ion-title>Daybook details</ion-title>
+    <ion-buttons right>
+      <img alt="logo" height="40" src="https://s3.ap-south-1.amazonaws.com/bizdaz-images/mobile/{{companyId}}.png">
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <ion-content padding class="bg"> -->
+  <ion-card class="border-shade">
+    <ion-card-header>
+      <ion-row>
+      <h2>{{dayBookList.partyLedgerName}}</h2>
+      <ion-col col-8>
+        <p>{{ dayBookList.voucherType }}
+          <p>
+      </ion-col>
+      <ion-col col-4>
+        <!-- <button ion-button clear item-end color="danger" right>Hide</button> -->
+        <!-- <button ion-button clear item-end color="danger" *ngIf="role == '1'" [navPush]="dayBookPage" 
+        (click)="onRemoveFromList(dayBookList.voucherKey)">Hide</button> -->
+      </ion-col>
+    </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <p> Voucher Date : {{dayBookList.voucherDate}}</p>
+      <p> Voucher Key : {{dayBookList.voucherKey}}</p>
+      <p> Voucher Number: {{dayBookList.voucherNumber}}</p>
+    </ion-card-content>
+    <div *ngIf="dayBookList.ledgerEntryVOs?.length > 0">
+      <ion-card-header>Ledger Details </ion-card-header>
+      <ion-card-content *ngFor="let ledger of dayBookList.ledgerEntryVOs">
+        <p>Name : {{ledger.ledgerName}} </p>
+        <p>Amount : {{displayINR(ledger.amount)}}</p>
+      </ion-card-content>
+    </div>
+    <div *ngIf="dayBookList.inventoryEntryVOs?.length > 0">
+      <ion-card-header>Inventory Details </ion-card-header>
+      <ion-card-content *ngFor="let inventory of dayBookList.inventoryEntryVOs">
+        <p>Item Name : {{inventory.stockItemName}} </p>
+        <p>Rate/ton : {{displayINR(inventory.rate)}} </p>
+        <p>Amount : {{displayINR(inventory.amount)}}</p>
+        <p>Billed Qty : {{inventory.billedQuantity}}</p>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</ion-content>

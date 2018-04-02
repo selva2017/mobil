@@ -1,0 +1,56 @@
+<ion-header>
+
+  <ion-navbar [color]="isAndroid ? 'royal' : 'head'">
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Register here</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <form (ngSubmit)="doSignup(registerForm)" #registerForm="ngForm">
+    <ion-item>
+      <!-- <ion-label stacked>Username</ion-label> -->
+      <ion-input [(ngModel)]="regData.email" name="email" type="text" placeholder="Username" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label stacked>Password</ion-label> -->
+      <ion-input [(ngModel)]="regData.password" name="password" type="password" placeholder="Password" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label stacked>Confirm Password</ion-label> -->
+      <ion-input [(ngModel)]="regData.confirmPassword" name="confirmPassword" type="password" placeholder="Confirm Password" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label stacked>First Name</ion-label> -->
+      <ion-input [(ngModel)]="regData.firstName" name="firstName" type="text" placeholder="First Name" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label stacked>Last Name</ion-label> -->
+      <ion-input [(ngModel)]="regData.lastName" name="lastName" type="text" placeholder="Last Name" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label stacked>Company ID</ion-label> -->
+      <ion-input [(ngModel)]="regData.companyId" name="companyId" type="text" placeholder="Company ID" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label stacked>Company ID</ion-label> -->
+      <ion-input [(ngModel)]="regData.userType" name="userType" type="text" placeholder="User Type" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label stacked>Company ID</ion-label> -->
+      <ion-input [(ngModel)]="regData.customerId" name="customerId" type="text" placeholder="GST Number or ID" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- <ion-label stacked>Company ID</ion-label> -->
+      <ion-input [(ngModel)]="regData.customerName" name="customerName" type="text" placeholder="Customer Name" required></ion-input>
+    </ion-item>
+    <p style="color:red">{{error_message}}</p>
+    <button ion-button block type="submit" [color]="'head'" [disabled]="!registerForm.valid">
+      SignUp
+    </button>
+  </form>
+</ion-content>
